@@ -1,6 +1,12 @@
 <h1>Today in History</h1>
 <% @dates.each do |num, date| %>
-  <%= date %>
-  <%= @nytdata.get_data(date) %><br><br>
+  <% t = Time.new(date[0..3].to_i, date[4..5].to_i, date[6..7]) %>
+  <h2><%= "#{t.strftime("%B")} #{t.strftime("%d")}, #{t.strftime("%Y")}" %></h2>
+
+  <% article_data = NYTimesAPI.new(date).get_article_data %>
+  <h3><%= link_to article_data["headline"], article_data["link"] %></h3>
+  <h5><%= article_data["snippet"] %></h5>
+
 <% end %>
+
 
