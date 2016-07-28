@@ -1,0 +1,6 @@
+<h1>Today in History</h1>
+<% @dates.each do |num, date| %>
+  <%= date %>
+  <%= @nytdata.get_data(date) %><br><br>
+<% end %>
+
